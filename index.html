@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- displays site properly based on user's device -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""
+        />
+        <script
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""
+        ></script>
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./images/favicon-32x32.png"
+        />
+        <link rel="stylesheet" href="./src/style/index.css" />
+        <title>IP Address Tracker</title>
+        <script src="./src/script/index.js" type="module"></script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="header_title">IP Address Tracker</h1>
+            <form class="header_form">
+                <input
+                    class="header_form_input_text"
+                    type="text"
+                    name="ip"
+                    id="ipInput"
+                    placeholder="Search for any IP address or domain"
+                />
+                <input
+                    type="submit"
+                    value=""
+                    class="header_form_input_submit"
+                />
+            </form>
+        </header>
+        <main>
+            <section class="ipInfo">
+                <div class="ipInfo_adress">
+                    <p>ip adress</p>
+                    <p id="address">0.0.0.0</p>
+                </div>
+                <div class="ipInfo_divider"></div>
+                <div class="ipInfo_location">
+                    <p>Location</p>
+                    <p id="location">Moon</p>
+                </div>
+                <div class="ipInfo_divider"></div>
+
+                <div class="ipInfo_timezone">
+                    <p>timezone</p>
+                    <p id="timezone">UTC -05:00</p>
+                </div>
+                <div class="ipInfo_divider"></div>
+
+                <div class="ipInfo_isp">
+                    <p>isp</p>
+                    <p id="isp">SpaceX StarLink</p>
+                </div>
+            </section>
+            <div id="mapid" class="map">La map</div>
+
+            <div class="attribution">
+                Challenge by
+                <a
+                    href="https://www.frontendmentor.io?ref=challenge"
+                    target="_blank"
+                    >Frontend Mentor</a
+                >. Coded by <a href="#">Willy-tec</a>.
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+</html>
