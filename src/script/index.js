@@ -38,12 +38,13 @@ function fetchData({ ip, domain }) {
 }
 
 function fillData(d) {
-    adress.textContent = d?.query;
+    console.log(d);
+    adress.textContent = d?.ip;
     location.textContent = d?.city;
     timezone.textContent = d?.timezone;
     isp.textContent = d?.isp;
-    mymap.panTo([d?.lat, d?.lon]);
-    L.marker([d?.lat, d?.lon]).addTo(mymap);
+    mymap.panTo([d?.latitude, d?.longitude]);
+    L.marker([d?.latitude, d?.longitude]).addTo(mymap);
 }
 
 window.onload = fetchData;

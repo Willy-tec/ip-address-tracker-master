@@ -5,6 +5,6 @@ export const config = [
     },
     {
         apikey: 'none',
-        url: 'http://ip-api.com/json/',
+        url: 'https://ipwhois.app/json/',
     },
 ];
