@@ -25,33 +25,41 @@ let ipData = {};
 const getIpFromUrl = () => window.location.search.slice(4);
 
 let ip = getIpFromUrl();
-let url = `${config.url}?apiKey=${config.apikey}`;
+// let url = `${config.url}?apiKey=${config.apikey}`;
+let url = config[1].url;
+
+// document.forms[0].addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     let { value } = e.target[0];
+//     if (ip.match(/[0-9]{1,}.[0-9]{1,}.[0-9]{1,} /g)) fetchData({ ip: value });
+//     else fetchData({ domain: value });
+// });  //used for the ip geo location
 
 document.forms[0].addEventListener('submit', function (e) {
     e.preventDefault();
     let { value } = e.target[0];
-    if (ip.match(/[0-9]{1,}.[0-9]{1,}.[0-9]{1,} /g)) fetchData({ ip: value });
-    else fetchData({ domain: value });
+    fetchData({ ip: value });
 });
 
 function fetchData({ ip, domain }) {
-    if (ip) url += `&ipAddress=${ip}`;
-    else if (domain) url += `&domain=${domain}`;
+    if (ip) url += `${ip}`;
     axios
         .get(url)
-        .then((data) => fillData(data.data))
+        .then((data) => {
+            console.log(data.data);
+            fillData(data.data);
+        })
         .catch((e) => console.log(e));
 }
 
 function fillData(d) {
-    console.log(process.env);
     ipData = d;
-    adress.textContent = d?.ip;
-    location.textContent = d?.location?.region;
-    timezone.textContent = d?.location?.timezone;
+    adress.textContent = d?.query;
+    location.textContent = d?.city;
+    timezone.textContent = d?.timezone;
     isp.textContent = d?.isp;
-    mymap.panTo([d?.location?.lat, d?.location?.lng]);
-    L.marker([d?.location?.lat, d?.location?.lng]).addTo(mymap);
+    mymap.panTo([d?.lat, d?.lon]);
+    L.marker([d?.lat, d?.lon]).addTo(mymap);
 }
 
 window.onload = fetchData;
