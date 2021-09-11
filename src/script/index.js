@@ -44,6 +44,7 @@ function fetchData({ ip, domain }) {
 }
 
 function fillData(d) {
+    console.log(process.env);
     ipData = d;
     adress.textContent = d?.ip;
     location.textContent = d?.location?.region;
