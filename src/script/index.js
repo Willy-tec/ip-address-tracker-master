@@ -19,7 +19,9 @@ L.tileLayer(
             'pk.eyJ1IjoiYWxvd242NjYiLCJhIjoiY2t0ZTZlZXhiMm1najJ2cGQ5czdzYzhxbCJ9.JJPNwAdjuCjF2J9WOaQOtQ',
     }
 ).addTo(mymap);
+
 let ipData = {};
+
 const getIpFromUrl = () => window.location.search.slice(4);
 
 let ip = getIpFromUrl();
@@ -35,20 +37,20 @@ document.forms[0].addEventListener('submit', function (e) {
 function fetchData({ ip, domain }) {
     if (ip) url += `&ipAddress=${ip}`;
     else if (domain) url += `&domain=${domain}`;
-    fetch(url)
-        .then((raw) => raw.json())
-        .then((data) => fillData(data))
+    axios
+        .get(url)
+        .then((data) => fillData(data.data))
         .catch((e) => console.log(e));
 }
 
 function fillData(d) {
     ipData = d;
-    adress.textContent = d.ip;
-    location.textContent = d.location.region;
-    timezone.textContent = d.location.timezone;
-    isp.textContent = d.isp;
-    mymap.panTo([d.location.lat, d.location.lng]);
-    L.marker([d.location.lat, d.location.lng]).addTo(mymap);
+    adress.textContent = d?.ip;
+    location.textContent = d?.location?.region;
+    timezone.textContent = d?.location?.timezone;
+    isp.textContent = d?.isp;
+    mymap.panTo([d?.location?.lat, d?.location?.lng]);
+    L.marker([d?.location?.lat, d?.location?.lng]).addTo(mymap);
 }
 
 window.onload = fetchData;
