@@ -16,7 +16,7 @@ L.tileLayer(
         tileSize: 512,
         zoomOffset: -1,
         accessToken:
-            'pk.eyJ1IjoiYWxvd242NjYiLCJhIjoiY2t0ZTZlZXhiMm1najJ2cGQ5czdzYzhxbCJ9.JJPNwAdjuCjF2J9WOaQOtQ',
+            'pk.eyJ1IjoiYWxvd242NjYiLCJhIjoiY2t0ZmczYjZjMDEzczJvcGVsOTV6eDNuMiJ9.7D4rCHAIfYhLVpZbsOPjcQ',
     }
 ).addTo(mymap);
 
