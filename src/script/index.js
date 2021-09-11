@@ -20,20 +20,7 @@ L.tileLayer(
     }
 ).addTo(mymap);
 
-let ipData = {};
-
-const getIpFromUrl = () => window.location.search.slice(4);
-
-let ip = getIpFromUrl();
-// let url = `${config.url}?apiKey=${config.apikey}`;
 let url = config[1].url;
-
-// document.forms[0].addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     let { value } = e.target[0];
-//     if (ip.match(/[0-9]{1,}.[0-9]{1,}.[0-9]{1,} /g)) fetchData({ ip: value });
-//     else fetchData({ domain: value });
-// });  //used for the ip geo location
 
 document.forms[0].addEventListener('submit', function (e) {
     e.preventDefault();
@@ -42,18 +29,15 @@ document.forms[0].addEventListener('submit', function (e) {
 });
 
 function fetchData({ ip, domain }) {
-    if (ip) url += `${ip}`;
+    if (ip) url = `${config[1].url}${ip}`;
+    else url = config[1].url;
     axios
         .get(url)
-        .then((data) => {
-            console.log(data.data);
-            fillData(data.data);
-        })
+        .then((data) => fillData(data.data))
         .catch((e) => console.log(e));
 }
 
 function fillData(d) {
-    ipData = d;
     adress.textContent = d?.query;
     location.textContent = d?.city;
     timezone.textContent = d?.timezone;
